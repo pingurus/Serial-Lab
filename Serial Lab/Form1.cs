@@ -138,6 +138,7 @@ namespace Seriallab
             {
                 try
                 {
+                    string newdata = "";
                     int dataLength = mySerial.BytesToRead;
                     byte[] dataRecevied = new byte[dataLength];
                     int nbytes = mySerial.Read(dataRecevied, 0, dataLength);
@@ -148,18 +149,18 @@ namespace Seriallab
                     {
                         foreach(byte b in dataRecevied)
                         {
-                            data += (b & 1).ToString() + "," + ((b & 2) >> 1).ToString() + "," + ((b & 4) >> 2).ToString() + "," + ((b & 8) >> 3).ToString()+"\n";
+                            newdata += (b & 1).ToString() + "," + ((b & 2) >> 1).ToString() + "," + ((b & 4) >> 2).ToString() + "," + ((b & 8) >> 3).ToString()+"\n";
                         }
                     }
                     else
                     {
-                        data = System.Text.Encoding.Default.GetString(dataRecevied);
+                        newdata = System.Text.Encoding.Default.GetString(dataRecevied);
                     }
 
                     if (datalogger_checkbox.Checked)
                     {
                         try
-                        { out_file.Write(data.Replace("\\n", Environment.NewLine)); }
+                        { out_file.Write(newdata.Replace("\\n", Environment.NewLine)); }
                         catch { alert("Can't write to " + datalogger_checkbox.Text + ". The file does not exist or is opened in another program."); return; }
                     }
                     
@@ -176,7 +177,7 @@ namespace Seriallab
                         else if (plotter_flag)
                         {
                             double number;
-                            string[] points = data.Split('\n');
+                            string[] points = newdata.Split('\n');
                             foreach (string point in points) {
                                 string[] variables = point.Split(',');
                                 for (int i = 0; i < variables.Length && i < 5; i++)
