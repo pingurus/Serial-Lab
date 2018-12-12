@@ -141,7 +141,7 @@ namespace Seriallab
                     int dataLength = mySerial.BytesToRead;
                     byte[] dataRecevied = new byte[dataLength];
                     int nbytes = mySerial.Read(dataRecevied, 0, dataLength);
-                    
+
                     if (nbytes == 0) return;
 
                     if (transmissionmode == Transmissionmodes.Bit)
@@ -176,12 +176,15 @@ namespace Seriallab
                         else if (plotter_flag)
                         {
                             double number;
-                            string[] variables = data.Split('\n')[0].Split(',');
-                            for (int i = 0; i < variables.Length && i < 5; i++)
-                            {
-                                if (double.TryParse(variables[i], out number))
+                            string[] points = data.Split('\n');
+                            foreach (string point in points) {
+                                string[] variables = point.Split(',');
+                                for (int i = 0; i < variables.Length && i < 5; i++)
                                 {
-                                    graph.Series[i].Points.Add(number);
+                                    if (double.TryParse(variables[i], out number))
+                                    {
+                                        graph.Series[i].Points.Add(number);
+                                    }
                                 }
                             }
                             graph.ResetAutoValues();
@@ -414,14 +417,14 @@ namespace Seriallab
         }
 
         /* Plotter ------*/
-        private void graph_speed_ValueChanged(object sender, EventArgs e)
+
+        private void clearPlotButton_Click(object sender, EventArgs e)
         {
-            graph.ChartAreas[0].AxisY.Interval = (int)graph_speed.Value;
-        }
-        /* change graph scale*/
-        private void graph_scale_ValueChanged(object sender, EventArgs e)
-        {
-            graph_scaler = (int)graph_scale.Value;
+            foreach (Series Serie in graph.Series)
+            {
+                Serie.Points.Clear();
+            }
+            data = "";
         }
         /* set graph max value*/
         private void set_graph_max_enable_CheckedChanged(object sender, EventArgs e)
@@ -478,6 +481,8 @@ namespace Seriallab
         {
             for (int i = 0; i < 5; i++)
                 graph.Series[i].Points.Clear();
+
+            data = "";
         }
 
         /*Application-----*/
@@ -565,5 +570,6 @@ namespace Seriallab
         {
             tx_terminal.Clear();
         }
+
     }
   }

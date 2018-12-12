@@ -92,10 +92,6 @@
             this.set_graph_min_enable = new System.Windows.Forms.CheckBox();
             this.graph_min = new System.Windows.Forms.NumericUpDown();
             this.set_graph_max_enable = new System.Windows.Forms.CheckBox();
-            this.graph_scale = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
-            this.graph_speed = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
             this.graph = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.graph_menu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.saveAsImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -110,6 +106,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.alert_messege = new System.Windows.Forms.NotifyIcon(this.components);
+            this.clearPlotButton = new System.Windows.Forms.Button();
             this.serial_options_group.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -128,8 +125,6 @@
             this.plotter_option_group.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.graph_max)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graph_min)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.graph_scale)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.graph_speed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.graph)).BeginInit();
             this.graph_menu.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -665,14 +660,11 @@
             // 
             // plotter_option_group
             // 
+            this.plotter_option_group.Controls.Add(this.clearPlotButton);
             this.plotter_option_group.Controls.Add(this.graph_max);
             this.plotter_option_group.Controls.Add(this.set_graph_min_enable);
             this.plotter_option_group.Controls.Add(this.graph_min);
             this.plotter_option_group.Controls.Add(this.set_graph_max_enable);
-            this.plotter_option_group.Controls.Add(this.graph_scale);
-            this.plotter_option_group.Controls.Add(this.label3);
-            this.plotter_option_group.Controls.Add(this.graph_speed);
-            this.plotter_option_group.Controls.Add(this.label7);
             this.plotter_option_group.Location = new System.Drawing.Point(18, 16);
             this.plotter_option_group.Name = "plotter_option_group";
             this.plotter_option_group.Size = new System.Drawing.Size(533, 64);
@@ -686,7 +678,7 @@
             this.graph_max.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.graph_max.Enabled = false;
             this.graph_max.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.graph_max.Location = new System.Drawing.Point(85, 26);
+            this.graph_max.Location = new System.Drawing.Point(96, 26);
             this.graph_max.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -698,7 +690,7 @@
             0,
             -2147483648});
             this.graph_max.Name = "graph_max";
-            this.graph_max.Size = new System.Drawing.Size(59, 20);
+            this.graph_max.Size = new System.Drawing.Size(68, 20);
             this.graph_max.TabIndex = 28;
             this.graph_max.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.graph_max.Value = new decimal(new int[] {
@@ -711,7 +703,7 @@
             // set_graph_min_enable
             // 
             this.set_graph_min_enable.AutoSize = true;
-            this.set_graph_min_enable.Location = new System.Drawing.Point(158, 29);
+            this.set_graph_min_enable.Location = new System.Drawing.Point(171, 28);
             this.set_graph_min_enable.Name = "set_graph_min_enable";
             this.set_graph_min_enable.Size = new System.Drawing.Size(65, 17);
             this.set_graph_min_enable.TabIndex = 27;
@@ -725,7 +717,7 @@
             this.graph_min.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.graph_min.Enabled = false;
             this.graph_min.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.graph_min.Location = new System.Drawing.Point(223, 28);
+            this.graph_min.Location = new System.Drawing.Point(243, 26);
             this.graph_min.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -737,7 +729,7 @@
             0,
             -2147483648});
             this.graph_min.Name = "graph_min";
-            this.graph_min.Size = new System.Drawing.Size(59, 20);
+            this.graph_min.Size = new System.Drawing.Size(68, 20);
             this.graph_min.TabIndex = 26;
             this.graph_min.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.graph_min.Value = new decimal(new int[] {
@@ -757,90 +749,6 @@
             this.set_graph_max_enable.Text = "Set Max:";
             this.set_graph_max_enable.UseVisualStyleBackColor = true;
             this.set_graph_max_enable.CheckedChanged += new System.EventHandler(this.set_graph_max_enable_CheckedChanged);
-            // 
-            // graph_scale
-            // 
-            this.graph_scale.AutoSize = true;
-            this.graph_scale.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.graph_scale.Enabled = false;
-            this.graph_scale.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.graph_scale.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.graph_scale.Location = new System.Drawing.Point(338, 28);
-            this.graph_scale.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.graph_scale.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.graph_scale.Name = "graph_scale";
-            this.graph_scale.Size = new System.Drawing.Size(53, 20);
-            this.graph_scale.TabIndex = 19;
-            this.graph_scale.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.graph_scale.Value = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.graph_scale.ValueChanged += new System.EventHandler(this.graph_scale_ValueChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Enabled = false;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(291, 30);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 16);
-            this.label3.TabIndex = 24;
-            this.label3.Text = "Points:";
-            // 
-            // graph_speed
-            // 
-            this.graph_speed.AllowDrop = true;
-            this.graph_speed.AutoSize = true;
-            this.graph_speed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.graph_speed.Enabled = false;
-            this.graph_speed.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.graph_speed.Location = new System.Drawing.Point(461, 29);
-            this.graph_speed.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.graph_speed.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.graph_speed.Name = "graph_speed";
-            this.graph_speed.Size = new System.Drawing.Size(53, 20);
-            this.graph_speed.TabIndex = 17;
-            this.graph_speed.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.graph_speed.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.graph_speed.ValueChanged += new System.EventHandler(this.graph_speed_ValueChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Enabled = false;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(404, 30);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 16);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "Interval:";
             // 
             // graph
             // 
@@ -1027,6 +935,16 @@
             this.alert_messege.Text = "notifyIcon1";
             this.alert_messege.Visible = true;
             // 
+            // clearPlotButton
+            // 
+            this.clearPlotButton.Location = new System.Drawing.Point(448, 26);
+            this.clearPlotButton.Name = "clearPlotButton";
+            this.clearPlotButton.Size = new System.Drawing.Size(68, 20);
+            this.clearPlotButton.TabIndex = 29;
+            this.clearPlotButton.Text = "Clear";
+            this.clearPlotButton.UseVisualStyleBackColor = true;
+            this.clearPlotButton.Click += new System.EventHandler(this.clearPlotButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1069,8 +987,6 @@
             this.plotter_option_group.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.graph_max)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.graph_min)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.graph_scale)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.graph_speed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.graph)).EndInit();
             this.graph_menu.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -1106,8 +1022,6 @@
         private System.Windows.Forms.TextBox tx_textarea;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataVisualization.Charting.Chart graph;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.NumericUpDown graph_speed;
         private System.Windows.Forms.Timer tx_repeater_delay;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
@@ -1116,8 +1030,6 @@
         private System.Windows.Forms.ToolStripMenuItem clearToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem saveAsImageToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.NumericUpDown graph_scale;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox plotter_option_group;
         private System.Windows.Forms.CheckBox set_graph_min_enable;
         private System.Windows.Forms.NumericUpDown graph_min;
@@ -1156,6 +1068,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ComboBox transmissionmodeConfig;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button clearPlotButton;
     }
 }
 
