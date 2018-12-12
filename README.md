@@ -18,7 +18,8 @@
 * Data logger to save incoming data to a **.txt** or **.csv** file.
 
 ## How to plot serial data?
-In order for the data to be plotted, variables must be **seperated by comma ( , )** and a **newline ( \n )** character must be added at the end.
+In order for the data to be plotted, variables must be **seperated by comma ( , )** and a **newline ( \n )** character must be added at the end. Or the 4 LSB in the byte sent corespond to the HIGH/LOW states of four Pins.
+
 ####Here an example code for [**Arduino**](https://www.arduino.cc/) platform 
 ```arduino
 void setup()
@@ -48,16 +49,26 @@ so data must be in this form
 ```
 var1,var2,var3\n
 ```
+or
+```
+00001010
+```
+
 and the result will be as shown in the image below   
   
 <img src="/imgs/plotter.png" width="500">  
 
 ## Download  
-Available versions  
-[**SerialLabSetupV1.0.0.msi**](https://github.com/ahmedelsayed93/Serial-Lab/raw/master/SerialLabSetupV1.0.0.msi)
+Currently only self compiled
+
 ## Author 
+Current Author:
+[**pingurus@t-online.de**](mailto:pingurus@t-online.de)  
+
+Original Author:
 **Ahmed El-Sayed**  
 [**ahmed.m.elsayed93@gmail.com**](mailto:ahmed.m.elsayed93@gmail.com)  
+
 ## License
 Licensed under the **GNU GPLv3**  
 **Icon** is designed by [**Freepik**](www.freepik.com) from [**Flaticon**](www.flaticon.com)

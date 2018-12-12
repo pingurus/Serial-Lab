@@ -146,7 +146,10 @@ namespace Seriallab
 
                     if (transmissionmode == Transmissionmodes.Bit)
                     {
-                        data = (dataRecevied[0] & 1).ToString() + "," + ((dataRecevied[0] & 2) >> 1).ToString();
+                        foreach(byte b in dataRecevied)
+                        {
+                            data += (b & 1).ToString() + "," + ((b & 2) >> 1).ToString() + "," + ((b & 4) >> 2).ToString() + "," + ((b & 8) >> 3).ToString()+"\n";
+                        }
                     }
                     else
                     {
@@ -157,7 +160,7 @@ namespace Seriallab
                     {
                         try
                         { out_file.Write(data.Replace("\\n", Environment.NewLine)); }
-                        catch { alert("Can't write to " + datalogger_checkbox.Text + " file it might be not exist or it is opennd in another program"); return; }
+                        catch { alert("Can't write to " + datalogger_checkbox.Text + ". The file does not exist or is opened in another program."); return; }
                     }
                     
                     this.BeginInvoke((Action)(() =>
@@ -185,7 +188,7 @@ namespace Seriallab
                         }
                     }));
                 }
-                catch { alert("Can't read form  " + mySerial.PortName + " port it might be opennd in another program"); }
+                catch { alert("Can't read form  " + mySerial.PortName + ". Port might be used by another program"); }
             }
         }
 
@@ -259,7 +262,7 @@ namespace Seriallab
                     }
                     catch
                     {
-                        alert("Can't open " + tx_textarea.Text + " file, it might be not exist or it is used in another program");
+                        alert("Can't open " + tx_textarea.Text + ". The file does not exist or is opened in another program.");
                         return;
                     }
 
@@ -334,7 +337,7 @@ namespace Seriallab
                     }
                     catch
                     {
-                        alert("Can't write to " + mySerial.PortName + " port it might be opennd in another program");
+                        alert("Can't write to " + mySerial.PortName + ". Port might be used by another program");
                     }
                 }
             }
@@ -366,7 +369,7 @@ namespace Seriallab
                     tx_terminal.AppendText("[TX]> " + e.KeyChar.ToString() + "\n");
                     tx_textarea.Clear();
                 }
-                catch {alert("Can't write to "+mySerial.PortName+" port it might be opennd in another program"); }
+                catch {alert("Can't write to "+mySerial.PortName+". Port might be used by another program"); }
             }
         }
 
@@ -482,7 +485,7 @@ namespace Seriallab
         private bool Serial_port_config()
         {
             try {mySerial.PortName = portConfig.Text; }
-            catch { alert("There are no available ports"); return false;}
+            catch { alert("No ports available"); return false;}
             mySerial.BaudRate = (Int32.Parse(baudrateConfig.Text));
             mySerial.StopBits = (StopBits)Enum.Parse(typeof(StopBits), (stopbitsConfig.SelectedIndex + 1).ToString(), true);
             mySerial.Parity = (Parity)Enum.Parse(typeof(Parity), parityConfig.SelectedIndex.ToString(), true);
@@ -501,12 +504,12 @@ namespace Seriallab
 
             if (value)
             {
-                connect.Text = "Disconnected";
+                connect.Text = "Disconnect";
                 toolStripStatusLabel1.Text = "Connected port: " + mySerial.PortName + " @ " + mySerial.BaudRate + " bps";
             }
             else
             {
-                connect.Text = "Connected";
+                connect.Text = "Connect";
                 toolStripStatusLabel1.Text = "No Connection";
             }
         }
