@@ -36,9 +36,7 @@ namespace Seriallab
         
         enum Transmissionmodes { CommaSeperated, Bit};
         Transmissionmodes transmissionmode;
-
-        Series[] Series = new Series[5];
-
+        
         System.IO.StreamWriter out_file;
         System.IO.StreamReader in_file;
 
@@ -180,12 +178,6 @@ namespace Seriallab
                             {
                                 if (double.TryParse(variables[i], out number))
                                 {
-                                    /*
-                                    Series[i].Points.Add(number);
-
-                                    if (Series[i].Points.Count > graph_scaler)
-                                        graph.Series[i] = Series[i].Points.Select()
-                                        */
                                     graph.Series[i].Points.Add(number);
                                 }
                             }
@@ -427,10 +419,6 @@ namespace Seriallab
         private void graph_scale_ValueChanged(object sender, EventArgs e)
         {
             graph_scaler = (int)graph_scale.Value;
-            /*
-            for (int i = 0; i < 5; i++)
-                graph.Series[i].Points.Clear();
-                */
         }
         /* set graph max value*/
         private void set_graph_max_enable_CheckedChanged(object sender, EventArgs e)

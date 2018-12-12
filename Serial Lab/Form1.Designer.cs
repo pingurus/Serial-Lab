@@ -221,9 +221,9 @@
             // 
             this.transmissionmodeConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.transmissionmodeConfig.FormattingEnabled = true;
-            this.transmissionmodeConfig.Location = new System.Drawing.Point(139, 120);
+            this.transmissionmodeConfig.Location = new System.Drawing.Point(158, 119);
             this.transmissionmodeConfig.Name = "transmissionmodeConfig";
-            this.transmissionmodeConfig.Size = new System.Drawing.Size(76, 21);
+            this.transmissionmodeConfig.Size = new System.Drawing.Size(189, 21);
             this.transmissionmodeConfig.TabIndex = 15;
             // 
             // label5
@@ -762,6 +762,7 @@
             // 
             this.graph_scale.AutoSize = true;
             this.graph_scale.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.graph_scale.Enabled = false;
             this.graph_scale.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.graph_scale.Increment = new decimal(new int[] {
             100,
@@ -793,6 +794,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Enabled = false;
             this.label3.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(291, 30);
             this.label3.Name = "label3";
@@ -805,6 +807,7 @@
             this.graph_speed.AllowDrop = true;
             this.graph_speed.AutoSize = true;
             this.graph_speed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.graph_speed.Enabled = false;
             this.graph_speed.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.graph_speed.Location = new System.Drawing.Point(461, 29);
             this.graph_speed.Maximum = new decimal(new int[] {
@@ -831,6 +834,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Enabled = false;
             this.label7.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(404, 30);
             this.label7.Name = "label7";
@@ -863,6 +867,8 @@
             chartArea1.BorderWidth = 0;
             chartArea1.CursorX.IsUserEnabled = true;
             chartArea1.CursorX.IsUserSelectionEnabled = true;
+            chartArea1.CursorY.IsUserEnabled = true;
+            chartArea1.CursorY.IsUserSelectionEnabled = true;
             chartArea1.Name = "ChartArea1";
             this.graph.ChartAreas.Add(chartArea1);
             this.graph.ContextMenuStrip = this.graph_menu;
@@ -878,32 +884,32 @@
             this.graph.Name = "graph";
             series1.BorderWidth = 2;
             series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(123)))), ((int)(((byte)(182)))));
             series1.Legend = "Legend1";
             series1.Name = "var 1";
             series1.YValuesPerPoint = 32;
             series2.BorderWidth = 2;
             series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(25)))), ((int)(((byte)(28)))));
             series2.Legend = "Legend1";
             series2.Name = "var 2";
             series3.BorderWidth = 2;
             series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(163)))), ((int)(((byte)(84)))));
             series3.Legend = "Legend1";
             series3.Name = "var 3";
             series4.BorderWidth = 2;
             series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series4.Color = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(170)))), ((int)(((byte)(79)))));
             series4.Legend = "Legend1";
             series4.Name = "var 4";
             series5.BorderWidth = 2;
             series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(81)))), ((int)(((byte)(154)))));
             series5.Legend = "Legend1";
             series5.Name = "var 5";
