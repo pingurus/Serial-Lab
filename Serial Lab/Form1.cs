@@ -26,10 +26,19 @@ namespace Seriallab
     public partial class MainForm : Form
     {
         public string data{ get; set; }
+        /// <summary>
+        /// Number of Points visible in Graph
+        /// </summary>
         int graph_scaler = 500;
         int send_repeat_counter = 0;
         bool send_data_flag = false;
         bool plotter_flag = false;
+        
+        enum Transmissionmodes { CommaSeperated, Bit};
+        Transmissionmodes transmissionmode;
+
+        Series[] Series = new Series[5];
+
         System.IO.StreamWriter out_file;
         System.IO.StreamReader in_file;
 
@@ -47,7 +56,7 @@ namespace Seriallab
             databitsConfig.DataSource = new[] { "5", "6", "7", "8" };
             stopbitsConfig.DataSource = new[] { "1", "2", "1.5" };
             flowcontrolConfig.DataSource = new[] { "None", "RTS", "RTS/X", "Xon/Xoff" };
-            //portConfig.SelectedIndex = 0;
+            transmissionmodeConfig.DataSource = new[] { "Comma seperated floats", "Bit HIGH/LOW" };
             baudrateConfig.SelectedIndex = 5;
             parityConfig.SelectedIndex = 0;
             databitsConfig.SelectedIndex = 3;
@@ -59,7 +68,7 @@ namespace Seriallab
             tx_repeater_delay.Tick += new EventHandler(send_data);
             backgroundWorker1.DoWork += new DoWorkEventHandler(update_rxtextarea_event);
             tabControl1.Selected += new TabControlEventHandler(tabControl1_Selecting);
-
+            
             for (int i = 0; i < 5 && i < 5; i++)
                 graph.Series[i].Points.Add(0);
 
@@ -134,7 +143,17 @@ namespace Seriallab
                     int dataLength = mySerial.BytesToRead;
                     byte[] dataRecevied = new byte[dataLength];
                     int nbytes = mySerial.Read(dataRecevied, 0, dataLength);
+                    
                     if (nbytes == 0) return;
+
+                    if (transmissionmode == Transmissionmodes.Bit)
+                    {
+                        data = (dataRecevied[0] & 1).ToString() + "," + ((dataRecevied[0] & 2) >> 1).ToString();
+                    }
+                    else
+                    {
+                        data = System.Text.Encoding.Default.GetString(dataRecevied);
+                    }
 
                     if (datalogger_checkbox.Checked)
                     {
@@ -142,12 +161,9 @@ namespace Seriallab
                         { out_file.Write(data.Replace("\\n", Environment.NewLine)); }
                         catch { alert("Can't write to " + datalogger_checkbox.Text + " file it might be not exist or it is opennd in another program"); return; }
                     }
-
-
+                    
                     this.BeginInvoke((Action)(() =>
                     {
-                        data = System.Text.Encoding.Default.GetString(dataRecevied);
-
                         if (!plotter_flag && !backgroundWorker1.IsBusy)
                         {
                             if (display_hex_radiobutton.Checked)
@@ -164,8 +180,12 @@ namespace Seriallab
                             {
                                 if (double.TryParse(variables[i], out number))
                                 {
-                                    if (graph.Series[i].Points.Count > graph_scaler)
-                                        graph.Series[i].Points.RemoveAt(0);
+                                    /*
+                                    Series[i].Points.Add(number);
+
+                                    if (Series[i].Points.Count > graph_scaler)
+                                        graph.Series[i] = Series[i].Points.Select()
+                                        */
                                     graph.Series[i].Points.Add(number);
                                 }
                             }
@@ -407,8 +427,10 @@ namespace Seriallab
         private void graph_scale_ValueChanged(object sender, EventArgs e)
         {
             graph_scaler = (int)graph_scale.Value;
+            /*
             for (int i = 0; i < 5; i++)
                 graph.Series[i].Points.Clear();
+                */
         }
         /* set graph max value*/
         private void set_graph_max_enable_CheckedChanged(object sender, EventArgs e)
@@ -479,6 +501,7 @@ namespace Seriallab
             mySerial.DataBits = (Int32.Parse(databitsConfig.Text));
             mySerial.Handshake = (Handshake)Enum.Parse(typeof(Handshake), flowcontrolConfig.SelectedIndex.ToString(), true);
 
+            transmissionmode = (Transmissionmodes)transmissionmodeConfig.SelectedIndex;
             return true;
         }
 
@@ -553,18 +576,3 @@ namespace Seriallab
         }
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

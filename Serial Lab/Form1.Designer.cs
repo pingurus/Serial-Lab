@@ -45,6 +45,8 @@
             this.parityConfig = new System.Windows.Forms.ComboBox();
             this.mySerial = new System.IO.Ports.SerialPort(this.components);
             this.serial_options_group = new System.Windows.Forms.GroupBox();
+            this.transmissionmodeConfig = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.flowconrol_label = new System.Windows.Forms.Label();
             this.baudrate_label = new System.Windows.Forms.Label();
             this.flowcontrolConfig = new System.Windows.Forms.ComboBox();
@@ -68,6 +70,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tx_terminal = new System.Windows.Forms.RichTextBox();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.write_options_group = new System.Windows.Forms.GroupBox();
             this.tx_num_panel = new System.Windows.Forms.Panel();
             this.send_delay = new System.Windows.Forms.NumericUpDown();
@@ -106,8 +110,6 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.alert_messege = new System.Windows.Forms.NotifyIcon(this.components);
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.serial_options_group.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -116,6 +118,7 @@
             this.read_options_group.SuspendLayout();
             this.dsiplayas_options_panel.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.contextMenuStrip2.SuspendLayout();
             this.write_options_group.SuspendLayout();
             this.tx_num_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.send_delay)).BeginInit();
@@ -131,7 +134,6 @@
             this.graph_menu.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.datalogger_options_panel.SuspendLayout();
-            this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // connect
@@ -148,7 +150,7 @@
             // 
             this.portConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.portConfig.FormattingEnabled = true;
-            this.portConfig.Location = new System.Drawing.Point(89, 34);
+            this.portConfig.Location = new System.Drawing.Point(84, 19);
             this.portConfig.Name = "portConfig";
             this.portConfig.Size = new System.Drawing.Size(76, 21);
             this.portConfig.TabIndex = 1;
@@ -158,7 +160,7 @@
             // 
             this.baudrateConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.baudrateConfig.FormattingEnabled = true;
-            this.baudrateConfig.Location = new System.Drawing.Point(89, 63);
+            this.baudrateConfig.Location = new System.Drawing.Point(84, 48);
             this.baudrateConfig.Name = "baudrateConfig";
             this.baudrateConfig.Size = new System.Drawing.Size(75, 21);
             this.baudrateConfig.TabIndex = 2;
@@ -167,7 +169,7 @@
             // 
             this.databitsConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.databitsConfig.FormattingEnabled = true;
-            this.databitsConfig.Location = new System.Drawing.Point(89, 92);
+            this.databitsConfig.Location = new System.Drawing.Point(84, 77);
             this.databitsConfig.Name = "databitsConfig";
             this.databitsConfig.Size = new System.Drawing.Size(76, 21);
             this.databitsConfig.TabIndex = 3;
@@ -178,7 +180,7 @@
             this.stopbitsConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.stopbitsConfig.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.stopbitsConfig.FormattingEnabled = true;
-            this.stopbitsConfig.Location = new System.Drawing.Point(278, 34);
+            this.stopbitsConfig.Location = new System.Drawing.Point(273, 19);
             this.stopbitsConfig.Name = "stopbitsConfig";
             this.stopbitsConfig.Size = new System.Drawing.Size(74, 21);
             this.stopbitsConfig.TabIndex = 4;
@@ -187,13 +189,15 @@
             // 
             this.parityConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.parityConfig.FormattingEnabled = true;
-            this.parityConfig.Location = new System.Drawing.Point(278, 63);
+            this.parityConfig.Location = new System.Drawing.Point(273, 48);
             this.parityConfig.Name = "parityConfig";
             this.parityConfig.Size = new System.Drawing.Size(74, 21);
             this.parityConfig.TabIndex = 5;
             // 
             // serial_options_group
             // 
+            this.serial_options_group.Controls.Add(this.transmissionmodeConfig);
+            this.serial_options_group.Controls.Add(this.label5);
             this.serial_options_group.Controls.Add(this.flowconrol_label);
             this.serial_options_group.Controls.Add(this.baudrate_label);
             this.serial_options_group.Controls.Add(this.flowcontrolConfig);
@@ -206,28 +210,46 @@
             this.serial_options_group.Controls.Add(this.stopbits_label);
             this.serial_options_group.Controls.Add(this.databitsConfig);
             this.serial_options_group.Controls.Add(this.databits_label);
-            this.serial_options_group.Location = new System.Drawing.Point(14, 20);
+            this.serial_options_group.Location = new System.Drawing.Point(14, 4);
             this.serial_options_group.Name = "serial_options_group";
-            this.serial_options_group.Size = new System.Drawing.Size(385, 133);
+            this.serial_options_group.Size = new System.Drawing.Size(385, 149);
             this.serial_options_group.TabIndex = 9;
             this.serial_options_group.TabStop = false;
             this.serial_options_group.Text = "Serial port options";
             // 
+            // transmissionmodeConfig
+            // 
+            this.transmissionmodeConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.transmissionmodeConfig.FormattingEnabled = true;
+            this.transmissionmodeConfig.Location = new System.Drawing.Point(139, 120);
+            this.transmissionmodeConfig.Name = "transmissionmodeConfig";
+            this.transmissionmodeConfig.Size = new System.Drawing.Size(76, 21);
+            this.transmissionmodeConfig.TabIndex = 15;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(21, 123);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(94, 13);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Transmissionmode";
+            // 
             // flowconrol_label
             // 
             this.flowconrol_label.AutoSize = true;
-            this.flowconrol_label.Location = new System.Drawing.Point(205, 94);
+            this.flowconrol_label.Location = new System.Drawing.Point(200, 79);
             this.flowconrol_label.Name = "flowconrol_label";
-            this.flowconrol_label.Size = new System.Drawing.Size(65, 13);
+            this.flowconrol_label.Size = new System.Drawing.Size(64, 13);
             this.flowconrol_label.TabIndex = 13;
             this.flowconrol_label.Text = "Flow control";
             // 
             // baudrate_label
             // 
             this.baudrate_label.AutoSize = true;
-            this.baudrate_label.Location = new System.Drawing.Point(26, 66);
+            this.baudrate_label.Location = new System.Drawing.Point(21, 51);
             this.baudrate_label.Name = "baudrate_label";
-            this.baudrate_label.Size = new System.Drawing.Size(51, 13);
+            this.baudrate_label.Size = new System.Drawing.Size(50, 13);
             this.baudrate_label.TabIndex = 8;
             this.baudrate_label.Text = "Baudrate";
             // 
@@ -235,7 +257,7 @@
             // 
             this.flowcontrolConfig.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.flowcontrolConfig.FormattingEnabled = true;
-            this.flowcontrolConfig.Location = new System.Drawing.Point(278, 91);
+            this.flowcontrolConfig.Location = new System.Drawing.Point(273, 76);
             this.flowcontrolConfig.Name = "flowcontrolConfig";
             this.flowcontrolConfig.Size = new System.Drawing.Size(74, 21);
             this.flowcontrolConfig.TabIndex = 12;
@@ -243,36 +265,36 @@
             // parity_label
             // 
             this.parity_label.AutoSize = true;
-            this.parity_label.Location = new System.Drawing.Point(205, 66);
+            this.parity_label.Location = new System.Drawing.Point(200, 51);
             this.parity_label.Name = "parity_label";
-            this.parity_label.Size = new System.Drawing.Size(35, 13);
+            this.parity_label.Size = new System.Drawing.Size(33, 13);
             this.parity_label.TabIndex = 11;
             this.parity_label.Text = "Parity";
             // 
             // port_label
             // 
             this.port_label.AutoSize = true;
-            this.port_label.Location = new System.Drawing.Point(28, 37);
+            this.port_label.Location = new System.Drawing.Point(23, 22);
             this.port_label.Name = "port_label";
-            this.port_label.Size = new System.Drawing.Size(27, 13);
+            this.port_label.Size = new System.Drawing.Size(26, 13);
             this.port_label.TabIndex = 7;
             this.port_label.Text = "Port";
             // 
             // stopbits_label
             // 
             this.stopbits_label.AutoSize = true;
-            this.stopbits_label.Location = new System.Drawing.Point(204, 37);
+            this.stopbits_label.Location = new System.Drawing.Point(199, 22);
             this.stopbits_label.Name = "stopbits_label";
-            this.stopbits_label.Size = new System.Drawing.Size(49, 13);
+            this.stopbits_label.Size = new System.Drawing.Size(48, 13);
             this.stopbits_label.TabIndex = 10;
             this.stopbits_label.Text = "Stop bits";
             // 
             // databits_label
             // 
             this.databits_label.AutoSize = true;
-            this.databits_label.Location = new System.Drawing.Point(27, 95);
+            this.databits_label.Location = new System.Drawing.Point(22, 80);
             this.databits_label.Name = "databits_label";
-            this.databits_label.Size = new System.Drawing.Size(50, 13);
+            this.databits_label.Size = new System.Drawing.Size(49, 13);
             this.databits_label.TabIndex = 9;
             this.databits_label.Text = "Data bits";
             // 
@@ -389,7 +411,7 @@
             this.display_hex_radiobutton.AutoSize = true;
             this.display_hex_radiobutton.Location = new System.Drawing.Point(63, 5);
             this.display_hex_radiobutton.Name = "display_hex_radiobutton";
-            this.display_hex_radiobutton.Size = new System.Drawing.Size(44, 17);
+            this.display_hex_radiobutton.Size = new System.Drawing.Size(47, 17);
             this.display_hex_radiobutton.TabIndex = 26;
             this.display_hex_radiobutton.Text = "HEX";
             this.display_hex_radiobutton.UseVisualStyleBackColor = true;
@@ -400,7 +422,7 @@
             this.display_string_radiobutton.Checked = true;
             this.display_string_radiobutton.Location = new System.Drawing.Point(3, 5);
             this.display_string_radiobutton.Name = "display_string_radiobutton";
-            this.display_string_radiobutton.Size = new System.Drawing.Size(53, 17);
+            this.display_string_radiobutton.Size = new System.Drawing.Size(52, 17);
             this.display_string_radiobutton.TabIndex = 25;
             this.display_string_radiobutton.TabStop = true;
             this.display_string_radiobutton.Text = "String";
@@ -411,7 +433,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(21, 25);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 13);
+            this.label4.Size = new System.Drawing.Size(58, 13);
             this.label4.TabIndex = 25;
             this.label4.Text = "Display as:";
             // 
@@ -439,6 +461,20 @@
             this.tx_terminal.Size = new System.Drawing.Size(532, 231);
             this.tx_terminal.TabIndex = 30;
             this.tx_terminal.Text = "";
+            // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this.contextMenuStrip2.Name = "contextMenuStrip1";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(102, 26);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(101, 22);
+            this.toolStripMenuItem1.Text = "Clear";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // write_options_group
             // 
@@ -518,7 +554,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(1, 7);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.Size = new System.Drawing.Size(50, 13);
             this.label1.TabIndex = 23;
             this.label1.Text = "Repeats:";
             // 
@@ -527,7 +563,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(126, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 13);
+            this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 24;
             this.label2.Text = "Delay (ms):";
             // 
@@ -546,7 +582,7 @@
             this.write_form_file_radiobutton.AutoSize = true;
             this.write_form_file_radiobutton.Location = new System.Drawing.Point(196, 0);
             this.write_form_file_radiobutton.Name = "write_form_file_radiobutton";
-            this.write_form_file_radiobutton.Size = new System.Drawing.Size(66, 17);
+            this.write_form_file_radiobutton.Size = new System.Drawing.Size(64, 17);
             this.write_form_file_radiobutton.TabIndex = 20;
             this.write_form_file_radiobutton.Text = "From file";
             this.write_form_file_radiobutton.UseVisualStyleBackColor = true;
@@ -557,7 +593,7 @@
             this.key_capture_radiobutton.AutoSize = true;
             this.key_capture_radiobutton.Location = new System.Drawing.Point(98, 0);
             this.key_capture_radiobutton.Name = "key_capture_radiobutton";
-            this.key_capture_radiobutton.Size = new System.Drawing.Size(83, 17);
+            this.key_capture_radiobutton.Size = new System.Drawing.Size(82, 17);
             this.key_capture_radiobutton.TabIndex = 19;
             this.key_capture_radiobutton.Text = "Key capture";
             this.key_capture_radiobutton.UseVisualStyleBackColor = true;
@@ -716,7 +752,7 @@
             this.set_graph_max_enable.AutoSize = true;
             this.set_graph_max_enable.Location = new System.Drawing.Point(21, 28);
             this.set_graph_max_enable.Name = "set_graph_max_enable";
-            this.set_graph_max_enable.Size = new System.Drawing.Size(69, 17);
+            this.set_graph_max_enable.Size = new System.Drawing.Size(68, 17);
             this.set_graph_max_enable.TabIndex = 25;
             this.set_graph_max_enable.Text = "Set Max:";
             this.set_graph_max_enable.UseVisualStyleBackColor = true;
@@ -825,6 +861,8 @@
             chartArea1.BackGradientStyle = System.Windows.Forms.DataVisualization.Charting.GradientStyle.TopBottom;
             chartArea1.BorderColor = System.Drawing.Color.Maroon;
             chartArea1.BorderWidth = 0;
+            chartArea1.CursorX.IsUserEnabled = true;
+            chartArea1.CursorX.IsUserSelectionEnabled = true;
             chartArea1.Name = "ChartArea1";
             this.graph.ChartAreas.Add(chartArea1);
             this.graph.ContextMenuStrip = this.graph_menu;
@@ -903,7 +941,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.datalogger_options_panel);
-            this.groupBox1.Location = new System.Drawing.Point(412, 20);
+            this.groupBox1.Location = new System.Drawing.Point(412, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(176, 87);
             this.groupBox1.TabIndex = 27;
@@ -926,7 +964,7 @@
             this.datalogger_overwrite_radiobutton.Enabled = false;
             this.datalogger_overwrite_radiobutton.Location = new System.Drawing.Point(74, 30);
             this.datalogger_overwrite_radiobutton.Name = "datalogger_overwrite_radiobutton";
-            this.datalogger_overwrite_radiobutton.Size = new System.Drawing.Size(73, 17);
+            this.datalogger_overwrite_radiobutton.Size = new System.Drawing.Size(70, 17);
             this.datalogger_overwrite_radiobutton.TabIndex = 29;
             this.datalogger_overwrite_radiobutton.Text = "Overwrite";
             this.datalogger_overwrite_radiobutton.UseVisualStyleBackColor = true;
@@ -983,20 +1021,6 @@
             this.alert_messege.Text = "notifyIcon1";
             this.alert_messege.Visible = true;
             // 
-            // contextMenuStrip2
-            // 
-            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this.contextMenuStrip2.Name = "contextMenuStrip1";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(102, 26);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(101, 22);
-            this.toolStripMenuItem1.Text = "Clear";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1025,6 +1049,7 @@
             this.dsiplayas_options_panel.ResumeLayout(false);
             this.dsiplayas_options_panel.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.contextMenuStrip2.ResumeLayout(false);
             this.write_options_group.ResumeLayout(false);
             this.write_options_group.PerformLayout();
             this.tx_num_panel.ResumeLayout(false);
@@ -1045,7 +1070,6 @@
             this.groupBox1.ResumeLayout(false);
             this.datalogger_options_panel.ResumeLayout(false);
             this.datalogger_options_panel.PerformLayout();
-            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1124,6 +1148,8 @@
         private System.Windows.Forms.Panel tx_radiobuttons_panel;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ComboBox transmissionmodeConfig;
+        private System.Windows.Forms.Label label5;
     }
 }
 
